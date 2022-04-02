@@ -1,6 +1,9 @@
 from flask import Flask, render_template, request, redirect
 import os
 
+from sympy import im
+import PIL import Image
+
 # Flask는 Flask 객체를 먼저 생성한다
 app = Flask(__name__)
 
@@ -54,6 +57,14 @@ def upload():
         print(path)
         f.save(path)
         return redirect('/')   #/를 받는 함수로 가라
+
+
+@app.route('/mnist',methods=['GET','POST'])
+def mnist():
+    if request.method == 'GET':
+        return render_template('mnistform.html')
+    else:
+        pass
 
 # app을 run한다.
 # 자기가 스스로 동작한다면 __main__이 들어간다.
